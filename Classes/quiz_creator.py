@@ -1,10 +1,11 @@
 from question import Question
+import json
 
 class QuizCreator:
     def __init__(self):
         self.quiz = []
     
-    def AddQuestion(self):
+    def add_question(self):
         question = input("Enter a question: ")
         a = input("Enter choice (a): ")
         b = input("Enter choice (b): ")
@@ -19,3 +20,22 @@ class QuizCreator:
                 break
             else:
                 print("Not in choices")
+
+    def save_to_file(self, filename = "quiz.txt"):
+        with open("quiz.txt", "r") as file:
+            json.dump([question.dictionary() for question in self.quiz], file, indent=4)
+        print(f"Quiz saved to {filename}")
+    
+    def run(self):
+        while True:
+            self.add_question()
+            while True:
+                another_question = input("Enter another question? (y/n) ").strip().lower()
+                if another_question == "y":
+                    break
+                elif another_question == "n":
+                    self.save_to_file()
+                    return
+                else:
+                    print("Please enter y or n")
+                    
