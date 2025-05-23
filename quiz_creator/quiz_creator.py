@@ -22,7 +22,7 @@ class QuizCreator:
                 print("Not in choices")
 
     def save_to_file(self, filename = "quiz.txt"):
-        with open("quiz.txt", "r") as file:
+        with open("quiz.txt", "w") as file:
             json.dump([question.dictionary() for question in self.quiz], file, indent=4)
         print(f"Quiz saved to {filename}")
     
