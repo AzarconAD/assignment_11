@@ -1,7 +1,6 @@
 import json
 
 class FileReading:
-    def __init__(self):
-        with open("quiz.txt", "r") as file:
-            quiz = json.loads(file)
-        self.quiz = quiz
+    def __init__(self, filename = "quiz.txt"):
+        with open(filename, "r") as file:
+            self.quiz = json.load(file)
