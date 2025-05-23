@@ -2,15 +2,16 @@ import random
 from file_reading import FileReading
 
 class QuizFormat:
-    def format(self, score):
-        reader = FileReading()
-        quiz = reader.quiz
+    def __init__(self, quiz):
+        self.quiz = quiz
+    
+    def format(self):
         score = 0
-        total = len(quiz)
+        total = len(self.quiz)
 
-        random.shuffle(quiz)
+        random.shuffle(self.quiz)
         
-        for questions in quiz:
+        for questions in self.quiz:
 
             print("Question:", questions["question"])
             print("a.)", questions["a"])
